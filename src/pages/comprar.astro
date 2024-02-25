@@ -47,8 +47,8 @@ const title = "Comprar - Motion Energy";
   <!-- Formulario de Compra -->
   <section class="container mx-auto mt-8">
     <form
-      action="procesar_compra.php"
-      method="post"
+      id="compraForm"
+      onsubmit="enviarDatos(event)"
       class="max-w-md mx-auto p-8 bg-gray-100 rounded-lg shadow-md"
     >
       <h2 class="text-2xl mb-4 font-bold text-center">
@@ -70,7 +70,7 @@ const title = "Comprar - Motion Energy";
       </div>
 
       <div class="mb-4">
-        <label for="tarjeta" class="block text-gray-700 text-sm font-bold mb-2"
+        <label for="tel" class="block text-gray-700 text-sm font-bold mb-2"
           >Numero de telefono:
         </label>
         <input
@@ -105,3 +105,40 @@ const title = "Comprar - Motion Energy";
     </form>
   </section>
 </body>
+<script>
+  import { supabase } from "../lib/supabase";
+
+  async function enviarDatos(event: Event) {
+    event.preventDefault();
+
+    // Obtener los datos del formulario
+    const nombreInput: HTMLInputElement | null = document.getElementById(
+      "nombre"
+    ) as HTMLInputElement;
+    const telInput: HTMLInputElement | null = document.getElementById(
+      "tel"
+    ) as HTMLInputElement;
+    const direccionInput: HTMLInputElement | null = document.getElementById(
+      "direccion"
+    ) as HTMLInputElement;
+
+    if (nombreInput && telInput && direccionInput) {
+      const nombre = nombreInput.value;
+      const tel = telInput.value;
+      const direccion = direccionInput.value;
+
+      // Enviar datos a la base de datos en Supabase
+      const { data, error } = await supabase
+        .from("compras")
+        .upsert([{ nombre, tel, direccion }]);
+
+      if (error) {
+        console.error("Error al enviar datos a Supabase:", error.message);
+        // Puedes manejar los errores aquí
+      } else {
+        console.log("Datos enviados correctamente a Supabase:", data);
+        // Puedes agregar aquí redirecciones o mensajes de éxito según tu lógica
+      }
+    }
+  }
+</script>
