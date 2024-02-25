@@ -1,5 +1,6 @@
 ---
 const title = "Comprar - Motion Energy";
+import Form from "../components/Form";
 ---
 
 <head>
@@ -45,100 +46,5 @@ const title = "Comprar - Motion Energy";
   </section>
 
   <!-- Formulario de Compra -->
-  <section class="container mx-auto mt-8">
-    <form
-      id="compraForm"
-      onsubmit="enviarDatos(event)"
-      class="max-w-md mx-auto p-8 bg-gray-100 rounded-lg shadow-md"
-    >
-      <h2 class="text-2xl mb-4 font-bold text-center">
-        Dejanos tus datos y te contactamos
-      </h2>
-
-      <!-- Campos del Formulario -->
-      <div class="mb-4">
-        <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2"
-          >Nombre Completo:</label
-        >
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          placeholder="Escribe tu nombre completo"
-          class="w-full p-2 border rounded-md"
-        />
-      </div>
-
-      <div class="mb-4">
-        <label for="tel" class="block text-gray-700 text-sm font-bold mb-2"
-          >Numero de telefono:
-        </label>
-        <input
-          type="tel"
-          id="tel"
-          name="tel"
-          placeholder="Escribe el número de tu celular o WhatsApp"
-          class="w-full p-2 border rounded-md"
-        />
-      </div>
-
-      <div class="mb-4">
-        <label
-          for="direccion"
-          class="block text-gray-700 text-sm font-bold mb-2"
-          >Dirección de Envío:</label
-        >
-        <input
-          type="text"
-          id="direccion"
-          name="direccion"
-          placeholder="Escribe tu dirección de envío"
-          class="w-full p-2 border rounded-md"
-        />
-      </div>
-      <!-- Botón de Compra -->
-      <button
-        type="submit"
-        class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
-        >Enviar datos</button
-      >
-    </form>
-  </section>
+  <Form client:load/>
 </body>
-<script>
-  import { supabase } from "../lib/supabase";
-
-  async function enviarDatos(event: Event) {
-    event.preventDefault();
-
-    // Obtener los datos del formulario
-    const nombreInput: HTMLInputElement | null = document.getElementById(
-      "nombre"
-    ) as HTMLInputElement;
-    const telInput: HTMLInputElement | null = document.getElementById(
-      "tel"
-    ) as HTMLInputElement;
-    const direccionInput: HTMLInputElement | null = document.getElementById(
-      "direccion"
-    ) as HTMLInputElement;
-
-    if (nombreInput && telInput && direccionInput) {
-      const nombre = nombreInput.value;
-      const tel = telInput.value;
-      const direccion = direccionInput.value;
-
-      // Enviar datos a la base de datos en Supabase
-      const { data, error } = await supabase
-        .from("compras")
-        .upsert([{ nombre, tel, direccion }]);
-
-      if (error) {
-        console.error("Error al enviar datos a Supabase:", error.message);
-        // Puedes manejar los errores aquí
-      } else {
-        console.log("Datos enviados correctamente a Supabase:", data);
-        // Puedes agregar aquí redirecciones o mensajes de éxito según tu lógica
-      }
-    }
-  }
-</script>
