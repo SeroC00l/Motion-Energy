@@ -1,0 +1,107 @@
+---
+const title = "Comprar - Motion Energy";
+---
+
+<head>
+  <title>{title}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body class="font-sans text-gray-800 bg-gray-300 overflow-hidden">
+  <!-- Header -->
+  <header
+    class="bg-gradient-to-r w-screen from-blue-500 to-indigo-700 text-white p-6"
+  >
+    <a href="/" class="container mx-auto">
+      <h1 class="text-4xl font-bold">Motion Energy</h1>
+      <p class="text-lg">¡Compra ahora y experimenta el alivio!</p>
+    </a>
+  </header>
+  <!-- Imagen del Producto -->
+  <div class="hidden lg:block absolute w-max h-screen">
+    <img class="mt-32" src="motion.png" alt="product img" />
+  </div>
+
+  <!-- Datos de Contacto Llamativos -->
+  <section
+    class="container w-max mx-auto mt-8 p-8 bg-gray-200 rounded-lg max-w-full"
+  >
+    <h2 class="text-2xl mb-4 font-bold text-center">
+      Llama YA!! y lleva 1 produco por $139.900
+    </h2>
+
+    <!-- Información de Contacto -->
+    <div class="text-center">
+      <p class="text-lg font-bold">Teléfono de Atención al Cliente:</p>
+      <p class="text-2xl text-blue-500">1-800-MOTIONE</p>
+      <p class="text-lg font-bold mt-4">Correo Electrónico:</p>
+      <p class="text-xl text-blue-500">info@motionenergy.com</p>
+    </div>
+  </section>
+
+  <!-- Formulario de Compra -->
+  <section class="container mx-auto mt-8">
+    <form
+      action="procesar_compra.php"
+      method="post"
+      class="max-w-md mx-auto p-8 bg-gray-100 rounded-lg shadow-md"
+    >
+      <h2 class="text-2xl mb-4 font-bold text-center">
+        Dejanos tus datos y te contactamos
+      </h2>
+
+      <!-- Campos del Formulario -->
+      <div class="mb-4">
+        <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2"
+          >Nombre Completo:</label
+        >
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Escribe tu nombre completo"
+          class="w-full p-2 border rounded-md"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="tarjeta" class="block text-gray-700 text-sm font-bold mb-2"
+          >Numero de telefono:
+        </label>
+        <input
+          type="tel"
+          id="tel"
+          name="tel"
+          placeholder="Escribe el número de tu celular o WhatsApp"
+          class="w-full p-2 border rounded-md"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="direccion"
+          class="block text-gray-700 text-sm font-bold mb-2"
+          >Dirección de Envío:</label
+        >
+        <input
+          type="text"
+          id="direccion"
+          name="direccion"
+          placeholder="Escribe tu dirección de envío"
+          class="w-full p-2 border rounded-md"
+        />
+      </div>
+      <!-- Botón de Compra -->
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
+        >Enviar datos</button
+      >
+    </form>
+  </section>
+</body>
