@@ -5,11 +5,12 @@ function Formulario() {
   const [nombre, setNombre] = useState("");
   const [tel, setTel] = useState("");
   const [direccion, setDireccion] = useState("");
+  const [mail, setMail] = useState("");
   const enviarDatos = async (event) => {
     event.preventDefault();
 
     // Validación de campos
-    if (!nombre || !tel || !direccion) {
+    if (!nombre || !tel || !direccion || !mail) {
       alert("Por favor, complete todos los campos.");
       return;
     }
@@ -18,7 +19,7 @@ function Formulario() {
       // Envío de datos a Supabase
       const { data, error } = await supabase
         .from("compras")
-        .upsert([{ nombre, tel, direccion }])
+        .upsert([{ nombre, tel, direccion, mail }])
       if (error) {
         console.error("Error al enviar datos a Supabase:", error.message);
       } else {
@@ -65,12 +66,30 @@ function Formulario() {
             Numero de telefono:
           </label>
           <input
-            type="tel"
+            type="number"
             value={tel}
             onChange={(e) => setTel(e.target.value)}
             id="tel"
             name="tel"
             placeholder="Escribe el número de tu celular o WhatsApp"
+            className="w-full p-2 border rounded-md"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="mail"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Correo Electronico: 
+          </label>
+          <input
+            type="mail"
+            value={mail}
+            onChange={(e) => setMail(e.target.value)}
+            id="mail"
+            name="mail"
+            placeholder="Escribe tu correo electronico"
             className="w-full p-2 border rounded-md"
           />
         </div>
