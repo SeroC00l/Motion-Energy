@@ -11,6 +11,7 @@ import Form from "../components/Form";
     href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
     rel="stylesheet"
   />
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 
 <body class="font-sans text-gray-800 bg-gray-300 lg:overflow-hidden">
@@ -38,13 +39,16 @@ import Form from "../components/Form";
 
     <!-- Información de Contacto -->
     <div class="text-center">
-      <p class="text-lg font-bold">Teléfono de Atención al Cliente:</p>
-      <p class="text-2xl text-blue-500">1-800-MOTIONE</p>
+      <p class="text-lg font-bold">Teléfono de Ventas:</p>
+      <p class="text-2xl text-blue-500">
+        <box-icon type="logo" name="whatsapp" color="rgb(59 130 246)"></box-icon>
+        <span>311 235 4961</span>
+      </p>
       <p class="text-lg font-bold mt-4">Correo Electrónico:</p>
-      <p class="text-xl text-blue-500">info@motionenergy.com</p>
+      <p class="text-xl text-blue-500">motionenergy66@gmail.com</p>
     </div>
   </section>
 
   <!-- Formulario de Compra -->
-  <Form client:load/>
+  <Form client:load />
 </body>
